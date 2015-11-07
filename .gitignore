@@ -43,7 +43,8 @@ Temporary Items
 .apdisk
 
 Madjam2015/Library/
+Madjam2015/Temp/
 *.suo
 *.vs
-Madjam2015/Temp/
 *.csproj
+*.sln

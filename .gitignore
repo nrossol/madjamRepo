@@ -44,6 +44,7 @@ Temporary Items
 
 Madjam2015/Library/
 Madjam2015/Temp/
+Madjam2015/obj/
 *.suo
 *.vs
 *.csproj

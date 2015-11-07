@@ -7,6 +7,8 @@ public class ShurikenBehaviour : MonoBehaviour {
     public float speed = 2.0f;
     public float lifeTime = 8.0f;
 
+    public GameObject explosionPrefab;
+
     private Rigidbody shurikenRigidBody;
 
 	// Use this for initialization
@@ -21,4 +23,17 @@ public class ShurikenBehaviour : MonoBehaviour {
 	void Update () {
         //this.transform.Translate(0, 0, (speed * Time.deltaTime), Space.Self);
     }
+
+    void OnCollisionEnter()
+    {
+        this.BlowUp();
+    }
+
+    void BlowUp()
+    {
+        Instantiate(explosionPrefab, this.transform.position, this.transform.rotation);
+        Object.Destroy(this.gameObject);
+
+    }
+
 }

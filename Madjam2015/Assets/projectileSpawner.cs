@@ -11,6 +11,8 @@ public class projectileSpawner : MonoBehaviour {
     public float minSpawnHeight = 0.30f;
     public float maxSpawnHeight = 2.5f;
     public float spawnOffset = 1.0f;
+    public float spawnVelocity = 5.0f;
+
 
     public float minTargetHeight = 1.0f;
     public float maxTargetHeight = 1.9f;
@@ -53,6 +55,8 @@ public class projectileSpawner : MonoBehaviour {
         GameObject newProjectile = (GameObject)Instantiate(shurikenPrefab, newProjectilePosition, Quaternion.identity);
         newProjectile.transform.LookAt(this.transform.position + randomTargetOffset);
         newProjectile.transform.Rotate(0, 0, Random.Range(0, 360));
+        ShurikenBehaviour shuriken = newProjectile.GetComponent<ShurikenBehaviour>();
+        shuriken.speed = this.spawnVelocity;
     }
 
 }

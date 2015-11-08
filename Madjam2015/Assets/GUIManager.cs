@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class GUIManager : MonoBehaviour 
 {
     public enum GUIText
     {
-        Tutorial,
-        gameOver,
-        score
+        Tutorial = 0,
+        gameOver = 1,
+        score = 2
     }
 
     public GameObject tutorialText;
@@ -18,17 +19,17 @@ public class GUIManager : MonoBehaviour
 
     private const float defaultFadeTime = 5.0F;
 
-    public void SetTextGUI(GUIText guiText, bool disableOthers = false)
+    public void SetTextGUI(GUIText guiText, bool enable)
     {
-        if (disableOthers)
-        {
-            foreach (GameObject text in guiTexts)
-            {
-                text.SetActive(false);
-            }
-        }
+        //if (disableOthers)
+        //{
+        //    foreach (GameObject text in guiTexts)
+        //    {
+        //        text.SetActive(false);
+        //    }
+        //}
 
-        guiTexts[(int)guiText].SetActive(true);
+        guiTexts[(int)guiText].SetActive(enable);
     }
 
     public void DisplayAndFade(GUIText guiText, float timeToFade = defaultFadeTime)
@@ -53,7 +54,7 @@ public class GUIManager : MonoBehaviour
     }
 
 	// Use this for initialization
-	void Start () 
+	public void Awake() 
     {
         guiTexts = new GameObject[3];
 

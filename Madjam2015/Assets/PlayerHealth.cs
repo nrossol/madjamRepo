@@ -7,7 +7,13 @@ public class PlayerHealth : MonoBehaviour
     public Action OnDamage;
 
     public GameManager gameManager;
-    public float Health { get; private set; }
+    public int startingHealth;
+    public int Health { get; private set; }
+
+    public void Awake()
+    {
+        gameManager.OnGameStart += OnGameStart;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -22,5 +28,10 @@ public class PlayerHealth : MonoBehaviour
         {
             OnDamage();
         }
+    }
+
+    public void OnGameStart()
+    {
+        Health = startingHealth;
     }
 }

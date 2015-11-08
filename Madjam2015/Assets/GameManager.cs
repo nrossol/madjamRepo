@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class GameManager : MonoBehaviour 
 {
+    public event Action OnGameStart;
+    public event Action OnGameEnd;
+
     public GUIManager guiManager;
     public GameObject[] objectsToEnableDisable;
     public MonoBehaviour[] scriptsToEnableDisable;
@@ -12,11 +16,27 @@ public class GameManager : MonoBehaviour
 
     bool firstTimePlaying = true;
 
+    public void Start()
+    {
+        StartGame();
+    }
+
     public void EndGame()
     {
-        guiManager.SetTextGUI(GUIManager.GUIText.gameOver);
-
+        guiManager.SetTextGUI(GUIManager.GUIText.gameOver, true);
         GameOver = true;
+        EnableDisableGameObjects(false);
+
+        GameObject[] itemsToCleanUp = GameObject.FindGameObjectsWithTag("Cleanupable");
+        foreach (GameObject item in itemsToCleanUp)
+        {
+            Destroy(item);
+        }
+
+        if (OnGameEnd != null)
+        {
+            OnGameEnd();
+        }   
     }
 
     public void StartGame()
@@ -26,10 +46,14 @@ public class GameManager : MonoBehaviour
         if (firstTimePlaying)
         {
             guiManager.DisplayAndFade(GUIManager.GUIText.Tutorial);
+            firstTimePlaying = false;
         }
 
+        guiManager.SetTextGUI(GUIManager.GUIText.gameOver, false);
+
         GameOver = true;
-        EnableDisableGameObjects(false);
+        EnableDisableGameObjects(true);
+        OnGameStart();
     }
 
     private void EnableDisableGameObjects(bool enable)
@@ -52,7 +76,10 @@ public class GameManager : MonoBehaviour
             StartGame();
         }
 
-        surivedTime += Time.deltaTime;
+        if (!GameOver)
+        {
+            surivedTime += Time.deltaTime;
+        }
     }
 
 }

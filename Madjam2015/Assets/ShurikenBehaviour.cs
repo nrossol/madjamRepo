@@ -10,6 +10,9 @@ public class ShurikenBehaviour : MonoBehaviour {
     public GameObject explosionPrefab;
     public ParticleSystem smokeTrail;
 
+    public GameObject spinningBlade;
+    public float spinSpeed = 960.0f;
+
     private Rigidbody shurikenRigidBody;
     private float smokeLingerTime = 12.0f;//Max time smoke trail emitter should be allowed to stick around until being deleted
 
@@ -23,6 +26,7 @@ public class ShurikenBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        this.spinningBlade.transform.Rotate(0, spinSpeed * Time.deltaTime, 0);//Make blade spin
         //this.transform.Translate(0, 0, (speed * Time.deltaTime), Space.Self);
     }
 

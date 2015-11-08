@@ -52,6 +52,7 @@ public class projectileSpawner : MonoBehaviour {
 
         GameObject newProjectile = (GameObject)Instantiate(shurikenPrefab, newProjectilePosition, Quaternion.identity);
         newProjectile.transform.LookAt(this.transform.position + randomTargetOffset);
+        newProjectile.transform.Rotate(0, 0, Random.Range(0, 180));
     }
 
 }

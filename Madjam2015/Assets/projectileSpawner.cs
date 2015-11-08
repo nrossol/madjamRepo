@@ -17,7 +17,7 @@ public class projectileSpawner : MonoBehaviour {
     public float targetOffset = 0.4f;
 
     public float minTimeBetweenLaunches = 0.1f;
-    public float maxTimeBetweenLaunches = 1.0f;
+    public float maxTimeBetweenLaunches = 5.0f;
 
     public GameObject shurikenPrefab;
 
@@ -52,7 +52,7 @@ public class projectileSpawner : MonoBehaviour {
 
         GameObject newProjectile = (GameObject)Instantiate(shurikenPrefab, newProjectilePosition, Quaternion.identity);
         newProjectile.transform.LookAt(this.transform.position + randomTargetOffset);
-        newProjectile.transform.Rotate(0, 0, Random.Range(0, 180));
+        newProjectile.transform.Rotate(0, 0, Random.Range(0, 360));
     }
 
 }

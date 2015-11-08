@@ -5,7 +5,7 @@ public class ShurikenBehaviour : MonoBehaviour {
 
 
     public float speed = 2.0f;
-    public float lifeTime = 8.0f;
+    public float lifeTime = 20.0f;
 
     public GameObject explosionPrefab;
     public ParticleSystem smokeTrail;

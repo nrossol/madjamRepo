@@ -14,12 +14,15 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        guiManager.SetTextGUI(GUIManager.GUIText.gameOver);
+
         GameOver = true;
-        EnableDisableGameObjects(false);
     }
 
     public void StartGame()
     {
+        surivedTime = 0.0F;
+
         if (firstTimePlaying)
         {
             guiManager.DisplayAndFade(GUIManager.GUIText.Tutorial);

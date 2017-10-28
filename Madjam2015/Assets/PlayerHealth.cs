@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public Action OnDamage;
 
-    public GameManager gameManager;
+    //public GameManager gameManager;
     public float Health { get; private set; }
 
     private void OnCollisionEnter(Collision collision)
@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (Health <= 0)
         {
-            gameManager.EndGame();
+            //gameManager.EndGame();
         }
 
         if (OnDamage != null)
